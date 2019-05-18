@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993689141142",
+    "firebase_url": "https://thumbdrift-36dc6.firebaseio.com",
+    "project_id": "thumbdrift-36dc6",
+    "storage_bucket": "thumbdrift-36dc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993689141142:android:159ddc47d09fd2a9",
+        "android_client_info": {
+          "package_name": "hu.ait.thumbdrift"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993689141142-mfmjmh6p9fjr7r9843ems76s8mms7shq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.ait.thumbdrift",
+            "certificate_hash": "c6b322b45f7806102155f00c6afcbb6a43518d0e"
+          }
+        },
+        {
+          "client_id": "993689141142-70ucus24fqtqahu378nacnfcl1v1r140.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuQ_d_THzjFod7h0jXmVtUzF4iyW3yrRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993689141142-70ucus24fqtqahu378nacnfcl1v1r140.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/search"
+            android:icon="@drawable/ic_search"
+            android:title="Search"/>
+
+    <item
+            android:id="@+id/offerRide"
+            android:icon="@drawable/ic_airport_shuttle"
+            android:title="Offer a ride"/>
+
+    <item
+            android:id="@+id/userInfo"
+            android:icon="@drawable/ic_face"
+            android:title="User Info"/>
+
+</menu>
