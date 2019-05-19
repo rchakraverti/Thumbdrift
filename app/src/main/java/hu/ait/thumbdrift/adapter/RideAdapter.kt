@@ -12,17 +12,14 @@ import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.Ride
 import kotlinx.android.synthetic.main.ride_row.view.*
 
-class RideAdapter(private val context: Context, listRides: List<Ride>) :
+class RideAdapter(private val context: Context, private val uID: String) :
     RecyclerView.Adapter<RideAdapter.ViewHolder>() {
 
     private var rideList = mutableListOf<Ride>()
     private var rideKeys = mutableListOf<String>()
 
     private var lastPosition = -1
-
-    init {
-        rideList.addAll(listRides)
-    }
+    
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
