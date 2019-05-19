@@ -14,7 +14,6 @@ import com.google.firebase.auth.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.UserProfile
-import kotlinx.android.synthetic.main.fragment_edit_user_info.view.*
 import kotlinx.android.synthetic.main.fragment_user_info.view.*
 
 class UserProfileAdapter(
