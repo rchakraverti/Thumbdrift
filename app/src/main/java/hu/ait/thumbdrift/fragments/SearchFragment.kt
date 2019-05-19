@@ -12,6 +12,7 @@ class SearchFragment: Fragment() {
 
     companion object {
         const val TAG="SearchFragment"
+        val KEY_USER_TO_SHOW = "KEY_USER_TO_SHOW"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
