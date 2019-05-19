@@ -7,13 +7,14 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.widget.CheckBox
 import android.widget.EditText
+import com.google.firebase.firestore.FirebaseFirestore
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.UserProfile
 import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.add_user_info_dialog.view.*
 import java.lang.RuntimeException
 
-class ItemDialog : DialogFragment() {
+class AddUserInfoDialog : DialogFragment() {
 
 
 
@@ -123,7 +124,23 @@ class ItemDialog : DialogFragment() {
                 cbCanDrive.isChecked
             )
         )
-    }
+
+        val db = FirebaseFirestore.getInstance().collection("userProfiles")
+
+        db.add(UserProfile(null,
+            etName.toString(),
+            etGender.toString(),
+            etAge.toString().toInt(),
+            etDescription.toString(),
+            cbCanDrive.isChecked
+        )).addOnSuccessListener {
+
+        }.addOnFailureListener {
+
+        }
+        }
+
+
 
     private fun handleItemEdit() {
         val profileToEdit = arguments?.getSerializable(
