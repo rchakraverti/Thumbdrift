@@ -24,13 +24,6 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:contentScrim="?attr/colorPrimary">
 
-            <com.flaviofaria.kenburnsview.KenBurnsView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_face"/>
-
-
-
             <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_height="?attr/actionBarSize"
@@ -59,11 +52,36 @@
             app:layout_anchorGravity="bottom|end"
             app:srcCompat="@drawable/ic_face"/>
 
-    <Button
-            android:id="@+id/btnExpense"
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_gravity="bottom"
-            android:text=""
+            android:weightSum="4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+        <EditText
+                android:id="@+id/etFrom"
+                android:hint="From"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:id="@+id/etTo"
+                android:hint="To"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:id="@+id/etDate"
+                android:inputType="date"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/btnSearch"
+                android:text="Search"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

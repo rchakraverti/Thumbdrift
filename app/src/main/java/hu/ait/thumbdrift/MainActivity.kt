@@ -10,19 +10,26 @@ import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        showFragmentByTag(SearchFragment.TAG, false)
+    }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.search -> {
-                message.setText(R.string.title_home)
+                showFragmentByTag(SearchFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.offerRide -> {
-                message.setText(R.string.title_dashboard)
+                showFragmentByTag(OfferRideFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.userInfo -> {
-                message.setText(R.string.title_notifications)
+                showFragmentByTag(UserInfoFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -44,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         if (fragment != null) {
             val ft = supportFragmentManager
                 .beginTransaction()
-            ft.replace(R.id.fragmentContainer, fragment!!, tag)
+            ft.replace(R.id.fragmentContainer, fragment, tag)
             if (toBackStack) {
                 ft.addToBackStack(null)
             }
@@ -52,10 +59,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-    }
 }
