@@ -43,11 +43,11 @@ class UserProfileAdapter(
 
         holder.tvName.text = name
         holder.tvDescription.text = description
-        holder.tvAge.text.toString().toInt() = age
+        holder.tvAge.text = age.toString()
         holder.tvGender.text = gender
 
 
-        if (uId == authorId) {
+        /*if (uId == authorUID) {
             holder.btnDeletePost.visibility = View.VISIBLE
 
             holder.btnDeletePost.setOnClickListener {
@@ -55,7 +55,7 @@ class UserProfileAdapter(
             }
         } else {
             holder.btnDeletePost.visibility = View.GONE
-        }
+        }*/
 
 
 

@@ -12,14 +12,17 @@ import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.Ride
 import kotlinx.android.synthetic.main.ride_row.view.*
 
-class RideAdapter(
-    private val context: Context,
-    private val uId: String) : RecyclerView.Adapter<RideAdapter.ViewHolder>() {
+class RideAdapter(private val context: Context, listRides: List<Ride>) :
+    RecyclerView.Adapter<RideAdapter.ViewHolder>() {
 
-    private var ridesList = mutableListOf<Ride>()
+    private var rideList = mutableListOf<Ride>()
     private var rideKeys = mutableListOf<String>()
 
     private var lastPosition = -1
+
+    init {
+        rideList.addAll(listRides)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -28,41 +31,31 @@ class RideAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount() =  ridesList.size
+    override fun getItemCount() =  rideList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (uid, authorUID, from, to, date, seats ) =
-            ridesList[holder.adapterPosition]
+            rideList[holder.adapterPosition]
 
         holder.tvFrom.text = from
         holder.tvTo.text = to
         holder.tvDate.text = date
-        var s = Integer.parseInt(holder.tvNumberOfSeats.text.toString())
-        s = seats
-
-        if (uId == authorId) {
-            holder.btnDeletePost.visibility = View.VISIBLE
-
-            holder.btnDeletePost.setOnClickListener {
-                removePost(holder.adapterPosition)
-            }
-        } else {
-            holder.btnDeletePost.visibility = View.GONE
+        holder.tvNumberOfSeats.text = seats.toString()
+        //var s = Integer.parseInt(holder.tvNumberOfSeats.text.toString())
+        //s = seats
+        holder.btnDriverDetails.setOnClickListener{
+            //open/get author information based on their author id
         }
-//
-//        if (imgUrl.isNotEmpty()) {
-//            holder.ivPhoto.visibility = View.VISIBLE
-//            Glide.with(context).load(imgUrl).into(holder.ivPhoto)
-//        } else {
-//            holder.ivPhoto.visibility = View.GONE
-//        }
 
+    }
 
-//        setAnimation(holder.itemView, position)
+    fun updatePost(ride: Ride, editIndex: Int){
+        rideList.set(editIndex, ride)
+        notifyItemChanged(editIndex)
     }
 
     fun addPost(ride: Ride, key: String) {
-        ridesList.add(ride)
+        rideList.add(ride)
         rideKeys.add(key)
         notifyDataSetChanged()
     }
@@ -72,7 +65,7 @@ class RideAdapter(
             rideKeys[index]
         ).delete()
 
-        ridesList.removeAt(index)
+        rideList.removeAt(index)
         rideKeys.removeAt(index)
         notifyItemRemoved(index)
     }
@@ -80,7 +73,7 @@ class RideAdapter(
     fun removePostByKey(key: String) {
         val index = rideKeys.indexOf(key)
         if (index != -1) {
-            ridesList.removeAt(index)
+            rideList.removeAt(index)
             rideKeys.removeAt(index)
             notifyItemRemoved(index)
         }
