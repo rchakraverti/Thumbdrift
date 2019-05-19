@@ -5,7 +5,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
 import hu.ait.thumbdrift.R
+import hu.ait.thumbdrift.adapter.RideAdapter
 
 
 class SearchFragment: Fragment() {
@@ -17,8 +19,6 @@ class SearchFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView=inflater.inflate(R.layout.fragment_search,container,false)
-
-
 
         return rootView
     }
