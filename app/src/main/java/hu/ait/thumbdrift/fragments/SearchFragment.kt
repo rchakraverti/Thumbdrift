@@ -29,6 +29,12 @@ class SearchFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView=inflater.inflate(R.layout.fragment_search,container,false)
 
+        return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
 //        btnSearch.setOnClickListener{
 //            Toast.makeText(context, "Filter Search", Toast.LENGTH_LONG).show()
 //        }
@@ -43,8 +49,6 @@ class SearchFragment: Fragment() {
         recyclerItem?.adapter = rideAdapter
 
         initPosts()
-
-        return rootView
     }
 
     private fun initPosts() {
@@ -60,7 +64,7 @@ class SearchFragment: Fragment() {
                         return
                     }
 
-                    for (dc in querySnapshot!!.getDocumentChanges()) {
+                    for (dc in querySnapshot!!.documentChanges) {
                         when (dc.getType()) {
                             DocumentChange.Type.ADDED -> {
                                 val ride = dc.document.toObject(Ride::class.java)

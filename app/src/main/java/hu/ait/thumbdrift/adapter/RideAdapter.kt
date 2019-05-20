@@ -34,10 +34,10 @@ class RideAdapter(private val context: Context, private val uID: String) :
         val (uid, authorUID, from, to, date, seats ) =
             rideList[holder.adapterPosition]
 
-        holder.tvFrom.text = from
-        holder.tvTo.text = to
-        holder.tvDate.text = date
-        holder.tvNumberOfSeats.text = seats.toString()
+        holder.tvFrom.text = "From: $from"
+        holder.tvTo.text = "To: $to"
+        holder.tvDate.text = "Date: $date"
+        holder.tvNumberOfSeats.text = "Seats Avaiable: ${seats.toString()}"
         //var s = Integer.parseInt(holder.tvNumberOfSeats.text.toString())
         //s = seats
         holder.btnDriverDetails.setOnClickListener{
