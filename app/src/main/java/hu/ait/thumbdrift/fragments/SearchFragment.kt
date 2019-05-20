@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +19,17 @@ import hu.ait.thumbdrift.data.Ride
 import kotlinx.android.synthetic.main.fragment_search.*
 
 
-class SearchFragment: Fragment() {
+class SearchFragment : Fragment() {
 
     companion object {
-        const val TAG="SearchFragment"
+        const val TAG = "SearchFragment"
         val KEY_USER_TO_SHOW = "KEY_USER_TO_SHOW"
     }
 
     lateinit var rideAdapter: RideAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView=inflater.inflate(R.layout.fragment_search,container,false)
+        val rootView = inflater.inflate(R.layout.fragment_search, container, false)
 
         return rootView
     }
@@ -35,9 +37,9 @@ class SearchFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        btnSearch.setOnClickListener{
-//            Toast.makeText(context, "Filter Search", Toast.LENGTH_LONG).show()
-//        }
+        btnSearch.setOnClickListener {
+            //Toast.makeText(context, "Filter Search", Toast.LENGTH_LONG).show()
+        }
 
         rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid)
 
@@ -49,6 +51,16 @@ class SearchFragment: Fragment() {
         recyclerItem?.adapter = rideAdapter
 
         initPosts()
+
+        etFrom.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //FirebaseFirestore.getInstance().collection("rides").whereEqualTo("from", s)
+            }
+        })
     }
 
     private fun initPosts() {
@@ -57,7 +69,7 @@ class SearchFragment: Fragment() {
         val query = db.collection("rides")
 
         var allRidesListener = query.addSnapshotListener(
-            object: EventListener<QuerySnapshot> {
+            object : EventListener<QuerySnapshot> {
                 override fun onEvent(querySnapshot: QuerySnapshot?, e: FirebaseFirestoreException?) {
                     if (e != null) {
                         Toast.makeText(context, "listen error: ${e.message}", Toast.LENGTH_LONG).show()
