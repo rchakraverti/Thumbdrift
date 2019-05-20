@@ -51,7 +51,7 @@ class RideAdapter(private val context: Context, private val uID: String) :
         notifyItemChanged(editIndex)
     }
 
-    fun addPost(ride: Ride, key: String) {
+    fun addRide(ride: Ride, key: String) {
         rideList.add(ride)
         rideKeys.add(key)
         notifyDataSetChanged()
