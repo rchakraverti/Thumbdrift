@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.widget.CheckBox
 import android.widget.EditText
-import com.google.firebase.firestore.FirebaseFirestore
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.UserProfile
 import hu.ait.thumbdrift.fragments.UserInfoFragment
@@ -20,7 +19,7 @@ class AddUserInfoDialog : DialogFragment() {
 
     interface ProfileHandler {
         fun userProfileCreated(userProfile: UserProfile)
-        fun userProfileUpdated(userProfile: UserProfile)
+        //fun userProfileUpdated(userProfile: UserProfile)
     }
 
     private lateinit var userHandler: ProfileHandler
@@ -125,19 +124,7 @@ class AddUserInfoDialog : DialogFragment() {
             )
         )
 
-        val db = FirebaseFirestore.getInstance().collection("userProfiles")
 
-        db.add(UserProfile(null,
-            etName.toString(),
-            etGender.toString(),
-            etAge.toString().toInt(),
-            etDescription.toString(),
-            cbCanDrive.isChecked
-        )).addOnSuccessListener {
-
-        }.addOnFailureListener {
-
-        }
         }
 
 
@@ -154,7 +141,7 @@ class AddUserInfoDialog : DialogFragment() {
         profileToEdit.age = etAge.text.toString().toInt()
 
 
-        userHandler.userProfileUpdated(profileToEdit)
+        //userHandler.userProfileUpdated(profileToEdit)
     }
 
 }
