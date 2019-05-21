@@ -30,8 +30,6 @@
         <TextView
                 android:id="@+id/tvFrom"
                 style="@style/CardTitleText"
-                android:textStyle="bold"
-                android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:layout_constraintStart_toEndOf="@id/tvFromLabel"
