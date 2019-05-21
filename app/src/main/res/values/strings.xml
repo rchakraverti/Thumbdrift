@@ -27,4 +27,5 @@
     <string name="fromLabel">From: </string>
     <string name="toLabel">To: </string>
     <string name="dateLabel">Date: </string>
+    <string name="btnEdit">Edit</string>
 </resources>

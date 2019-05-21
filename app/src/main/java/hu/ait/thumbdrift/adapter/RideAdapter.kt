@@ -35,25 +35,15 @@ class RideAdapter(private val context: Context, private val uID: String) :
         val (uid, authorUID, from, to, date, seats) =
             rideList[holder.adapterPosition]
 
-        holder.tvFrom.text = "From: $from"
-        holder.tvTo.text = "To: $to"
-        holder.tvDate.text = "Date: $date"
-        holder.tvNumberOfSeats.text = "Seats Avaiable: ${seats.toString()}"
+        holder.tvFrom.text = from
+        holder.tvTo.text = to
+        holder.tvDate.text = date
+        holder.tvNumberOfSeats.text = seats.toString()
         //var s = Integer.parseInt(holder.tvNumberOfSeats.text.toString())
         //s = seats
         holder.btnDriverDetails.setOnClickListener {
             //open author information based on their author id: driver details fragment
             }
-
-        if (uID == uid) {
-            holder.btnDelete.visibility = View.VISIBLE
-
-            holder.btnDelete.setOnClickListener {
-                removeRide(holder.adapterPosition)
-            }
-        } else {
-            holder.btnDelete.visibility = View.GONE
-        }
     }
 
     fun updateRide(ride: Ride, editIndex: Int) {
@@ -100,7 +90,6 @@ class RideAdapter(private val context: Context, private val uID: String) :
         val tvDate: TextView = itemView.tvDate
         val tvNumberOfSeats: TextView = itemView.tvNumberOfSeats
         val btnDriverDetails: Button = itemView.btnDriverDetails
-        val btnDelete: Button = itemView.btnDelete
 
     }
 }
