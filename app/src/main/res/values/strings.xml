@@ -28,4 +28,5 @@
     <string name="toLabel">To: </string>
     <string name="dateLabel">Date: </string>
     <string name="btnEdit">Edit</string>
+    <string name="btn_driver_details">Driver Details</string>
 </resources>

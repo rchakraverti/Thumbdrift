@@ -10,6 +10,20 @@
         <item name="android:imageButtonStyle">@style/MyButton</item>
 
     </style>
+
+    <style name="CardLabelText">
+        <item name="android:layout_marginRight">7dp</item>
+    </style>
+    <style name="CardTitleText">
+        <item name="android:layout_marginLeft">7dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CardText">
+        <item name="android:layout_marginLeft">7dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 

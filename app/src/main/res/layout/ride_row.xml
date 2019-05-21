@@ -8,15 +8,19 @@
         android:layout_margin="5dp"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp"
-        >
+>
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
         <TextView
                 android:id="@+id/tvFromLabel"
+                style="@style/CardLabelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:layout_constraintStart_toStartOf="parent"
@@ -25,6 +29,9 @@
         />
         <TextView
                 android:id="@+id/tvFrom"
+                style="@style/CardTitleText"
+                android:textStyle="bold"
+                android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:layout_constraintStart_toEndOf="@id/tvFromLabel"
@@ -35,21 +42,25 @@
                 android:id="@+id/right_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintStart_toEndOf="@id/tvFromLabel"
-                card_view:layout_constraintEnd_toStartOf="@id/tvTo"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                card_view:layout_constraintBottom_toBottomOf="@id/tvFrom"
+                card_view:layout_constraintStart_toEndOf="@id/tvFrom"
+                card_view:layout_constraintEnd_toStartOf="@id/tvToLabel"
                 android:text="@string/rightarrow"/>
 
         <TextView
                 android:id="@+id/tvToLabel"
+                style="@style/CardLabelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                card_view:layout_constraintStart_toEndOf="@id/tvTo"
+                card_view:layout_constraintEnd_toStartOf="@id/tvTo"
                 card_view:layout_constraintTop_toTopOf="parent"
                 android:text="@string/toLabel"
         />
         <TextView
                 android:id="@+id/tvTo"
+                style="@style/CardTitleText"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 android:layout_width="wrap_content"
@@ -57,6 +68,7 @@
 
         <TextView
                 android:id="@+id/tvDateLabel"
+                style="@style/CardLabelText"
                 card_view:layout_constraintTop_toBottomOf="@id/tvFrom"
                 card_view:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
@@ -64,6 +76,7 @@
                 android:text="@string/dateLabel"/>
         <TextView
                 android:id="@+id/tvDate"
+                style="@style/CardText"
                 card_view:layout_constraintTop_toBottomOf="@id/tvFrom"
                 card_view:layout_constraintStart_toEndOf="@id/tvDateLabel"
                 android:layout_width="wrap_content"
@@ -71,26 +84,28 @@
 
         <TextView
                 android:id="@+id/tvNumberOfSeatsLabel"
-                android:layout_width="match_parent"
+                style="@style/CardLabelText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:layout_constraintTop_toBottomOf="@id/tvDate"
                 card_view:layout_constraintStart_toStartOf="parent"
                 android:text="@string/spacesLabel"/>
         <TextView
                 android:id="@+id/tvNumberOfSeats"
-                android:layout_width="match_parent"
+                style="@style/CardText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:layout_constraintTop_toBottomOf="@id/tvDate"
                 card_view:layout_constraintStart_toEndOf="@id/tvNumberOfSeatsLabel"/>
 
         <Button
                 android:id="@+id/btnDriverDetails"
-                android:text="Driver Details"
+                android:text="@string/btn_driver_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@id/tvNumberOfSeats"/>
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 
 
