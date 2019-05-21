@@ -116,7 +116,7 @@ class AddUserInfoDialog : DialogFragment() {
             UserProfile(null,
                 etName.text.toString(),
                 etGender.text.toString(),
-                etAge.text.toString().toInt(),
+                etAge.text.toString().toInt()?: 0,
                 etDescription.text.toString(),
                 cbCanDrive.isChecked
             )

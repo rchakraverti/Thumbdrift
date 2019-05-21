@@ -24,6 +24,18 @@ class UserInfoFragment: Fragment() {
         }.addOnFailureListener {
             Toast.makeText(context as MainActivity, "Error: ${it.message}", Toast.LENGTH_LONG).show()
         }
+
+        tvName.text = userProfile.name
+        tvDescription.text = userProfile.description
+        tvAge.text = userProfile.age.toString()
+        tvGender.text = userProfile.gender
+
+        if(userProfile.canDrive) {
+            ivCanDrive.setImageResource(R.drawable.candrive)
+        }
+        else {
+            ivCanDrive.setImageResource(R.drawable.cannotdrive)
+        }
     }
 
 //    override fun userProfileUpdated(userProfile: UserProfile) {
@@ -44,13 +56,7 @@ class UserInfoFragment: Fragment() {
            AddUserInfoDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
 
         }
-
-
-
         return rootView
     }
-
-
-
 }
 
