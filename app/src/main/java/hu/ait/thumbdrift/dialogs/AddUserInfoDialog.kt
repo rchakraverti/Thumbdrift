@@ -15,8 +15,6 @@ import java.lang.RuntimeException
 
 class AddUserInfoDialog : DialogFragment() {
 
-
-
     interface ProfileHandler {
         fun userProfileCreated(userProfile: UserProfile)
         //fun userProfileUpdated(userProfile: UserProfile)
@@ -116,10 +114,10 @@ class AddUserInfoDialog : DialogFragment() {
 
         userHandler.userProfileCreated(
             UserProfile(null,
-                etName.toString(),
-                etGender.toString(),
-                etAge.toString().toInt(),
-                etDescription.toString(),
+                etName.text.toString(),
+                etGender.text.toString(),
+                etAge.text.toString().toInt(),
+                etDescription.text.toString(),
                 cbCanDrive.isChecked
             )
         )

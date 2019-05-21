@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.fragment_user_info.*
 import kotlinx.android.synthetic.main.fragment_user_info.view.*
 
 
-class UserInfoFragment: Fragment(), AddUserInfoDialog.ProfileHandler {
-    override fun userProfileCreated(userProfile: UserProfile) {
+class UserInfoFragment: Fragment() {
+    public fun profileCreated(userProfile: UserProfile) {
         val db = FirebaseFirestore.getInstance().collection("userProfiles")
         db.add(userProfile).addOnSuccessListener {
             Toast.makeText(context as MainActivity, "Profile added.", Toast.LENGTH_LONG).show()
@@ -37,13 +37,13 @@ class UserInfoFragment: Fragment(), AddUserInfoDialog.ProfileHandler {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView=inflater.inflate(R.layout.fragment_user_info,container,false)
 
-//        rootView.btnEdit.setOnClickListener {
-//
-//            //activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, UserInfoFragment())
-//
-//           AddUserInfoDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
-//
-//        }
+        rootView.btnEdit.setOnClickListener {
+
+            //activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, UserInfoFragment())
+
+           AddUserInfoDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
+
+        }
 
 
 
