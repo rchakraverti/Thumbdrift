@@ -27,8 +27,7 @@ class UserProfileAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.fragment_user_info, parent, false
-        )
+            R.layout.fragment_user_info, parent, false)
         return ViewHolder(view)
     }
 

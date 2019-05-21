@@ -2,6 +2,7 @@ package hu.ait.thumbdrift.dialogs
 
 import android.app.Dialog
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
@@ -9,6 +10,8 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import hu.ait.thumbdrift.R
@@ -117,9 +120,20 @@ class AddUserInfoDialog : DialogFragment() {
 
     private fun handleItemCreate() {
 
-        var query = FirebaseFirestore.getInstance().collection(("userProfiles"))
-            .whereEqualTo("uid", FirebaseAuth.getInstance().currentUser!!.uid)
+        var document = FirebaseFirestore.getInstance().collection(("userProfiles")).document(
+            "FirebaseAuth.getInstance().currentUser!!.uid"
+        )
+        document.get().addOnCompleteListener(
+            object : OnCompleteListener<DocumentSnapshot>{
+                override fun onComplete(p0: Task<DocumentSnapshot>) {
+                    if (!p0.isSuccessful){
+                        var user= p0.result?.toObject(UserProfile::class.java)
+                        user?.name
+                    }
+                }
 
+            }
+        )
 
 
         userHandler.userProfileCreated(

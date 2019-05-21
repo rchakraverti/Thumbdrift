@@ -8,11 +8,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
         <Button
                 android:id="@+id/btnOfferRide"
                 android:text="Offer Ride"
@@ -20,17 +16,15 @@
                 android:layout_height="wrap_content"/>
 
 
-
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerOffer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:padding="10dp"
+/>
 
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 
 
 </LinearLayout>
