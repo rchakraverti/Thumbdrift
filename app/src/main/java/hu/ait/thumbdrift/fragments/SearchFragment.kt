@@ -82,7 +82,7 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid)
+        rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid, "SEARCH")
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.reverseLayout = true
@@ -96,6 +96,8 @@ class SearchFragment : Fragment() {
         btnSearch?.setOnClickListener {
             filterSearch()
         }
+
+
     }
 
     private fun initPosts() {

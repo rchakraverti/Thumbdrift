@@ -25,15 +25,10 @@ class DriverDetailsDialog : DialogFragment() {
     private lateinit var btnContactDriver: Button
     private lateinit var userToShow: UserProfile
 
-
-
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
     }
-
-
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireContext())
@@ -59,14 +54,7 @@ class DriverDetailsDialog : DialogFragment() {
         tvDriverAge.text = userToShow.age.toString()
         tvDriverDescription.text = userToShow.description
 
-
-
-
-
         builder.setView(rootView)
-
-
-
 
         builder.setPositiveButton("OK") {
                 dialog, witch -> // empty
@@ -78,11 +66,4 @@ class DriverDetailsDialog : DialogFragment() {
             Toast.makeText(context as MainActivity, "Driver has been contacted.", Toast.LENGTH_LONG).show()
         }
     }
-
-
-
-
-
-
-
 }

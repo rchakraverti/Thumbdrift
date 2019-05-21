@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_offer_ride.*
 import kotlinx.android.synthetic.main.fragment_offer_ride.view.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_user_info.*
+import kotlinx.android.synthetic.main.ride_row_edit_delete.*
 
 class OfferRideFragment: Fragment() {
 
@@ -62,7 +63,7 @@ class OfferRideFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid)
+        rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid, "OFFER")
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.reverseLayout = true
