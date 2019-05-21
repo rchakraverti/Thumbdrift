@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.Ride
 import kotlinx.android.synthetic.main.ride_row.view.*
+import java.util.Collections.list
 
 class RideAdapter(private val context: Context, private val uID: String) :
     RecyclerView.Adapter<RideAdapter.ViewHolder>() {
@@ -84,6 +85,14 @@ class RideAdapter(private val context: Context, private val uID: String) :
             notifyItemRemoved(index)
         }
     }
+
+    fun clearAll() {
+        rideList.clear()
+        rideKeys.clear()
+        notifyDataSetChanged()
+    }
+
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvFrom: TextView = itemView.tvFrom

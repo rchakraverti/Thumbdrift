@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import hu.ait.thumbdrift.data.UserProfile
+import hu.ait.thumbdrift.dialogs.AddUserInfoDialog
 import hu.ait.thumbdrift.fragments.OfferRideFragment
 import hu.ait.thumbdrift.fragments.SearchFragment
 import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -29,8 +31,10 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    var fragment: Fragment? = null
+
     private fun showFragmentByTag(tag: String, toBackStack: Boolean) {
-        var fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
+        fragment = supportFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
             if (SearchFragment.TAG == tag) {
                 fragment = SearchFragment()
@@ -60,5 +64,11 @@ class MainActivity : AppCompatActivity() {
 
         showFragmentByTag(SearchFragment.TAG, false)
 
+    }
+
+    override fun userProfileCreated(userProfile: UserProfile){
+        if (fragment is UserInfoFragment){
+            (fragment as UserInfoFragment).profileCreated(userProfile)
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,38 +34,53 @@ class SearchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
 
-        filterSearch(rootView)
-
         return rootView
-
     }
 
-    private fun filterSearch(rootView: View?) {
-        rootView?.btnSearch?.setOnClickListener {
-            val db = FirebaseFirestore.getInstance().collection("rides")
-            var list : Task<QuerySnapshot>
-            if(rootView.etFrom.text.toString() != "") {
-                list = db.whereEqualTo("from", rootView.etFrom.text.toString()).get()
-            }
-            if(rootView.etTo.text.toString() != "") {
-                list = db.whereEqualTo("to", rootView.etTo.text.toString()).get()
-            }
-            if(rootView.etDate.text.toString() != "") {
-                list = db.whereEqualTo("date", rootView.etDate.text.toString()).get()
-            }
+    private fun filterSearch() {
+        rideAdapter.clearAll()
 
-
-
-
+        val db = FirebaseFirestore.getInstance()
+        var query: Query = db.collection("rides")
+        if (!etFrom.text.toString().isEmpty()) {
+            query = query.whereEqualTo("from", etFrom.text.toString())
         }
+        if (!etTo.text.toString().isEmpty()) {
+            query = query.whereEqualTo("to", etTo.text.toString())
+        }
+        if (!etDate.text.toString().isEmpty()) {
+            query = query.whereEqualTo("date", etDate.text.toString())
+        }
+
+        var ridesListener = query.addSnapshotListener(
+            object : EventListener<QuerySnapshot> {
+                override fun onEvent(querySnapshot: QuerySnapshot?, e: FirebaseFirestoreException?) {
+                    if (e != null) {
+                        Toast.makeText(context, "listen error: ${e.message}", Toast.LENGTH_LONG).show()
+                        return
+                    }
+
+                    for (dc in querySnapshot!!.documentChanges) {
+                        when (dc.getType()) {
+                            DocumentChange.Type.ADDED -> {
+                                val ride = dc.document.toObject(Ride::class.java)
+                                rideAdapter.addRide(ride, dc.document.id)
+                            }
+                            DocumentChange.Type.MODIFIED -> {
+                                Toast.makeText(context, "update: ${dc.document.id}", Toast.LENGTH_LONG).show()
+                            }
+                            DocumentChange.Type.REMOVED -> {
+                                rideAdapter.removePostByKey(dc.document.id)
+                            }
+                        }
+                    }
+                }
+            })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        btnSearch.setOnClickListener {
-            //Toast.makeText(context, "Filter Search", Toast.LENGTH_LONG).show()
-        }
 
         rideAdapter = RideAdapter(context!!, FirebaseAuth.getInstance().currentUser!!.uid)
 
@@ -77,15 +93,9 @@ class SearchFragment : Fragment() {
 
         initPosts()
 
-        etFrom.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //FirebaseFirestore.getInstance().collection("rides").whereEqualTo("from", s)
-            }
-        })
+        btnSearch?.setOnClickListener {
+            filterSearch()
+        }
     }
 
     private fun initPosts() {
