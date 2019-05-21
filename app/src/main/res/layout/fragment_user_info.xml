@@ -1,43 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/tvName"
-            android:text="Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:id="@+id/tvDescription"
-            android:text="Description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:id="@+id/tvGender"
-            android:text="Gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:id="@+id/tvAge"
-            android:text="Age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
     <ImageView
             android:id="@+id/ivCanDrive"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tvNameLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/nameLabel"
+            style="@style/CardLabelText"
+            app:layout_constraintStart_toEndOf="@id/ivCanDrive"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:id="@+id/tvName"
+            style="@style/CardTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvNameLabel"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tvAgeLabel"
+            android:text="@string/ageLabel"
+            style="@style/CardLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintStart_toEndOf="@id/ivCanDrive"/>
+    <TextView
+            android:id="@+id/tvAge"
+            style="@style/CardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvAgeLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvName"/>
+
+    <TextView
+            android:id="@+id/tvGenderLabel"
+            android:text="@string/genderLabel"
+            style="@style/CardLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintStart_toEndOf="@id/tvAge"
+            app:layout_constraintTop_toBottomOf="@id/tvName"/>
+    <TextView
+            android:id="@+id/tvGender"
+            style="@style/CardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvGenderLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvName"/>
+
+    <TextView
+            android:id="@+id/tvDescriptionLabel"
+            android:text="@string/descriptionLabel"
+            style="@style/CardLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvAge"
+            app:layout_constraintStart_toEndOf="@id/ivCanDrive"/>
+    <TextView
+            android:id="@+id/tvDescription"
+            style="@style/CardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvAge"
+            app:layout_constraintStart_toEndOf="@id/tvDescriptionLabel"/>
 
     <Button
             android:id="@+id/btnEdit"
-            android:text="EDIT PROFILE"
+            android:text="@string/btnedit_profile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-</LinearLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>

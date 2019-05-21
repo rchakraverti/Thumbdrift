@@ -29,4 +29,9 @@
     <string name="dateLabel">Date: </string>
     <string name="btnEdit">Edit</string>
     <string name="btn_driver_details">Driver Details</string>
+    <string name="nameLabel">Name:</string>
+    <string name="descriptionLabel">Description:</string>
+    <string name="genderLabel">Gender:</string>
+    <string name="ageLabel">Age:</string>
+    <string name="btnedit_profile">Edit Profile</string>
 </resources>
