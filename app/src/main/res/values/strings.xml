@@ -15,4 +15,16 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="fromHint">From</string>
+    <string name="toHint">To</string>
+    <string name="dateHint">Date</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="demoPassword">123456</string>
+    <string name="demoEmail">peter@ait.hu</string>
+    <string name="rightarrow">→</string>
+    <string name="spacesLabel">Spaces: </string>
+    <string name="fromLabel">From: </string>
+    <string name="toLabel">To: </string>
+    <string name="dateLabel">Date: </string>
 </resources>
