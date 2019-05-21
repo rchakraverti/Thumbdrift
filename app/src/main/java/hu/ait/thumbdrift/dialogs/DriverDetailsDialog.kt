@@ -75,9 +75,7 @@ class DriverDetailsDialog : DialogFragment() {
         return builder.create()
 
         btnContactDriver.setOnClickListener {
-            //Toast.makeText(this@DriverDetailsDialog, "Driver has been contacted.", Toast.LENGTH_LONG).show()
-            //TODO: fix error in context above
-            Snackbar.make(rootView, "Driver has been contacted.", Snackbar.LENGTH_LONG)
+            Toast.makeText(context as MainActivity, "Driver has been contacted.", Toast.LENGTH_LONG).show()
         }
     }
 

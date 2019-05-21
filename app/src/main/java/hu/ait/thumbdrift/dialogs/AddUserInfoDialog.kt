@@ -5,9 +5,14 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import hu.ait.thumbdrift.R
+import hu.ait.thumbdrift.data.Ride
 import hu.ait.thumbdrift.data.UserProfile
 import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.add_user_info_dialog.view.*
@@ -46,8 +51,9 @@ class AddUserInfoDialog : DialogFragment() {
         builder.setTitle("Add user info")
 
         val rootView = requireActivity().layoutInflater.inflate(
-            R.layout.add_user_info_dialog, null
-        )
+            R.layout.add_user_info_dialog, null)
+
+
 
         etName = rootView.etName
         etAge = rootView.etAge
@@ -111,12 +117,17 @@ class AddUserInfoDialog : DialogFragment() {
 
     private fun handleItemCreate() {
 
+        var query = FirebaseFirestore.getInstance().collection(("userProfiles"))
+            .whereEqualTo("uid", FirebaseAuth.getInstance().currentUser!!.uid)
+
+
 
         userHandler.userProfileCreated(
-            UserProfile(null,
+            UserProfile(
+                FirebaseAuth.getInstance().currentUser!!.uid,
                 etName.text.toString(),
                 etGender.text.toString(),
-                etAge.text.toString().toInt()?: 0,
+                etAge.text.toString().toInt(),
                 etDescription.text.toString(),
                 cbCanDrive.isChecked
             )

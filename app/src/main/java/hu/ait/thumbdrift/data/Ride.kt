@@ -1,7 +1,7 @@
 package hu.ait.thumbdrift.data
 
 data class Ride(
-    var uid: String = "",
+    var uid: String? = "",
     var authorUID: String = "",
     var from: String = "",
     var to: String = "",

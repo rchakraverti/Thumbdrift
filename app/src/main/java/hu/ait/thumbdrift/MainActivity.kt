@@ -4,14 +4,21 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import hu.ait.thumbdrift.data.Ride
 import hu.ait.thumbdrift.data.UserProfile
+import hu.ait.thumbdrift.dialogs.AddRideDialog
 import hu.ait.thumbdrift.dialogs.AddUserInfoDialog
 import hu.ait.thumbdrift.fragments.OfferRideFragment
 import hu.ait.thumbdrift.fragments.SearchFragment
 import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler {
+class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler, AddRideDialog.RideHandler {
+    override fun rideCreated(ride: Ride) {
+        if (fragment is OfferRideFragment){
+            (fragment as OfferRideFragment).rideCreated(ride)
+        }
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
