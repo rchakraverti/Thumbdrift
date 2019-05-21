@@ -11,12 +11,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.adapter.RideAdapter
 import hu.ait.thumbdrift.data.Ride
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_search.view.*
 
 
 class SearchFragment : Fragment() {
@@ -31,7 +33,30 @@ class SearchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
 
+        filterSearch(rootView)
+
         return rootView
+
+    }
+
+    private fun filterSearch(rootView: View?) {
+        rootView?.btnSearch?.setOnClickListener {
+            val db = FirebaseFirestore.getInstance().collection("rides")
+            var list : Task<QuerySnapshot>
+            if(rootView.etFrom.text.toString() != "") {
+                list = db.whereEqualTo("from", rootView.etFrom.text.toString()).get()
+            }
+            if(rootView.etTo.text.toString() != "") {
+                list = db.whereEqualTo("to", rootView.etTo.text.toString()).get()
+            }
+            if(rootView.etDate.text.toString() != "") {
+                list = db.whereEqualTo("date", rootView.etDate.text.toString()).get()
+            }
+
+
+
+
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
