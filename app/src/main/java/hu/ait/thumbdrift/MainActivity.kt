@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.search -> {
-                message.setText(R.string.title_home)
+                showFragmentByTag(SearchFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.offerRide -> {
-                message.setText(R.string.title_dashboard)
+                showFragmentByTag(OfferRideFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.userInfo -> {
-                message.setText(R.string.title_notifications)
+                showFragmentByTag(UserInfoFragment.TAG, true)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -57,5 +57,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        showFragmentByTag(SearchFragment.TAG, false)
+
     }
 }

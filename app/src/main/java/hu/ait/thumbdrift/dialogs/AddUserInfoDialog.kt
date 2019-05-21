@@ -13,13 +13,13 @@ import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.add_user_info_dialog.view.*
 import java.lang.RuntimeException
 
-class ItemDialog : DialogFragment() {
+class AddUserInfoDialog : DialogFragment() {
 
 
 
     interface ProfileHandler {
         fun userProfileCreated(userProfile: UserProfile)
-        fun userProfileUpdated(userProfile: UserProfile)
+        //fun userProfileUpdated(userProfile: UserProfile)
     }
 
     private lateinit var userHandler: ProfileHandler
@@ -123,7 +123,11 @@ class ItemDialog : DialogFragment() {
                 cbCanDrive.isChecked
             )
         )
-    }
+
+
+        }
+
+
 
     private fun handleItemEdit() {
         val profileToEdit = arguments?.getSerializable(
@@ -137,7 +141,7 @@ class ItemDialog : DialogFragment() {
         profileToEdit.age = etAge.text.toString().toInt()
 
 
-        userHandler.userProfileUpdated(profileToEdit)
+        //userHandler.userProfileUpdated(profileToEdit)
     }
 
 }
