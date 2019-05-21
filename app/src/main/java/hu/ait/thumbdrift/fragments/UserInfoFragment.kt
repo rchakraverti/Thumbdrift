@@ -11,21 +11,22 @@ import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import hu.ait.thumbdrift.MainActivity
 import hu.ait.thumbdrift.R
+import hu.ait.thumbdrift.data.Ride
 import hu.ait.thumbdrift.data.UserProfile
 import hu.ait.thumbdrift.dialogs.AddUserInfoDialog
 import kotlinx.android.synthetic.main.fragment_user_info.*
 import kotlinx.android.synthetic.main.fragment_user_info.view.*
 
 
-class UserInfoFragment: Fragment() {
+class UserInfoFragment : Fragment() {
     public fun profileCreated(userProfile: UserProfile) {
         val db = FirebaseFirestore.getInstance().collection("userProfiles")
         db.add(userProfile).addOnSuccessListener {
             Toast.makeText(context as MainActivity, "Profile added.", Toast.LENGTH_LONG).show()
+
         }.addOnFailureListener {
             Toast.makeText(context as MainActivity, "Error: ${it.message}", Toast.LENGTH_LONG).show()
         }
@@ -35,10 +36,9 @@ class UserInfoFragment: Fragment() {
         tvAge.text = userProfile.age.toString()
         tvGender.text = userProfile.gender
 
-        if(userProfile.canDrive) {
+        if (userProfile.canDrive) {
             ivCanDrive.setImageResource(R.drawable.candrive)
-        }
-        else {
+        } else {
             ivCanDrive.setImageResource(R.drawable.cannotdrive)
         }
     }
@@ -47,12 +47,12 @@ class UserInfoFragment: Fragment() {
 //    }
 
     companion object {
-        const val TAG="UserInfoFragment"
+        const val TAG = "UserInfoFragment"
         val KEY_USER_TO_EDIT = "KEY_USER_TO_EDIT"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView=inflater.inflate(R.layout.fragment_user_info,container,false)
+        val rootView = inflater.inflate(R.layout.fragment_user_info, container, false)
 
         return rootView
     }
@@ -60,33 +60,73 @@ class UserInfoFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var document = FirebaseFirestore.getInstance().collection(("userProfiles")).document(
-            FirebaseAuth.getInstance().currentUser!!.displayName!!
+        var query = FirebaseFirestore.getInstance().collection(("userProfiles")).whereEqualTo(
+            "uid", FirebaseAuth.getInstance().currentUser?.uid
         )
 
-        document.get().addOnCompleteListener(
-            object : OnCompleteListener<DocumentSnapshot> {
-                override fun onComplete(p0: Task<DocumentSnapshot>) {
-                    if (p0.isSuccessful) {
-                        var user = p0.result?.toObject(UserProfile::class.java)
-                        tvName.text = user?.name
-                        Log.d("DEBUG", user?.name.toString())
-                        tvDescription.text = user?.description
-                        tvAge.text = user?.age.toString()
-                        tvGender.text = user?.gender
-//                        if(user!!.canDrive) {
-//                            ivCanDrive.setImageResource(R.drawable.candrive)
-//                        }
-//                        else {
-//                            ivCanDrive.setImageResource(R.drawable.cannotdrive)
-//                        }
+        var allRidesListener = query.addSnapshotListener(
+            object : EventListener<QuerySnapshot> {
+                override fun onEvent(querySnapshot: QuerySnapshot?, e: FirebaseFirestoreException?) {
+                    if (e != null) {
+                        Toast.makeText(context, "listen error: ${e.message}", Toast.LENGTH_LONG).show()
+                        return
+                    }
 
+                    for (dc in querySnapshot!!.documentChanges) {
+                        when (dc.getType()) {
+                            DocumentChange.Type.ADDED -> {
+                                val profile = dc.document.toObject(UserProfile::class.java)
+                                tvName.text = profile.name
+                                tvDescription.text = profile.description
+                                tvAge.text = profile.age.toString()
+                                tvGender.text = profile.gender
+                                if (profile!!.canDrive) {
+                                    ivCanDrive.setImageResource(R.drawable.candrive)
+                                } else {
+                                    ivCanDrive.setImageResource(R.drawable.cannotdrive)
+                                }
+
+                            }
+                            DocumentChange.Type.MODIFIED -> {
+                            }
+                            DocumentChange.Type.REMOVED -> {
+                            }
+                        }
                     }
                 }
-            }
-        )
+            })
 
-       btnEdit.setOnClickListener {
+
+//        document.get().addOnCompleteListener(
+//            object : OnCompleteListener<DocumentSnapshot> {
+//                override fun onComplete(p0: Task<DocumentSnapshot>) {
+//                    if (p0.isSuccessful) {
+//                        var user = p0.result?.toObject(UserProfile::class.java)
+//                        tvName.text = "Peter"
+//                        tvDescription.text = "I am the best."
+//                        tvAge.text = "20"
+//                        tvGender.text = "M"
+//                        ivCanDrive.setImageResource(R.drawable.candrive)
+//
+////                        tvName.text = user?.name
+////                        Log.d("DEBUG", user?.name.toString())
+////                        tvDescription.text = user?.description
+////                        tvAge.text = user?.age.toString()
+////                        tvGender.text = user?.gender
+////                        if(user!!.canDrive) {
+////                            ivCanDrive.setImageResource(R.drawable.candrive)
+////                        }
+////                        else {
+////                            ivCanDrive.setImageResource(R.drawable.cannotdrive)
+////                        }
+//
+//                    }
+//                }
+//            }
+
+//        )
+
+        btnEdit.setOnClickListener {
 
             //activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, UserInfoFragment())
 

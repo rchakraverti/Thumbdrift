@@ -32,11 +32,7 @@ class RideAdapter(private val context: Context, private val uID: String, private
 
     private var lastPosition = -1
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-
 
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.ride_row_edit_delete, parent, false
