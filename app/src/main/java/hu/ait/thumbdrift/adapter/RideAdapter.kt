@@ -64,7 +64,7 @@ class RideAdapter(private val context: Context, private val uID: String, private
         //s = seats
         holder.btnDriverDetails.setOnClickListener {
             //open author information based on their author id: driver details fragment
-            Toast.makeText(context, "Driver details", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Driver contacted.", Toast.LENGTH_LONG).show()
             (context as MainActivity).showDriverDetails(ride.authorUID, holder.adapterPosition)
             //DriverDetailsDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
             }

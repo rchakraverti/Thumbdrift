@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"/>
     <EditText
             android:id="@+id/etOfferDate"
-            android:hint="Date"
+            android:hint="Date: dd/mm/yy"
             android:inputType="date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

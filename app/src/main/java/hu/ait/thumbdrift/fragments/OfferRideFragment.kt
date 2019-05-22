@@ -44,6 +44,10 @@ class OfferRideFragment: Fragment() {
         }
     }
 
+    public fun rideUpdated(ride: Ride) {
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_offer_ride, container, false)
 

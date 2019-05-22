@@ -25,7 +25,7 @@ class AddUserInfoDialog : DialogFragment() {
 
     interface ProfileHandler {
         fun userProfileCreated(userProfile: UserProfile)
-        //fun userProfileUpdated(userProfile: UserProfile)
+        fun userProfileUpdated(userProfile: UserProfile)
     }
 
     private lateinit var userHandler: ProfileHandler
@@ -164,7 +164,7 @@ class AddUserInfoDialog : DialogFragment() {
         profileToEdit.age = etAge.text.toString().toInt()
 
 
-        //userHandler.userProfileUpdated(profileToEdit)
+        userHandler.userProfileUpdated(profileToEdit)
     }
 
 }

@@ -24,7 +24,7 @@ class AddRideDialog : DialogFragment() {
 
     interface RideHandler {
         fun rideCreated(ride: Ride)
-        //fun rideUpdated(ride: Ride)
+        fun rideUpdated(ride: Ride)
     }
 
     private lateinit var rideHandler: RideHandler
@@ -147,7 +147,7 @@ class AddRideDialog : DialogFragment() {
         rideToEdit.seats = etOfferSeats.text.toString().toInt()
 
 
-        //rideHandler.rideUpdated(rideToEdit)
+        rideHandler.rideUpdated(rideToEdit)
     }
 
 }

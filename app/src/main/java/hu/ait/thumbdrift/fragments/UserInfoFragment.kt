@@ -43,8 +43,54 @@ class UserInfoFragment : Fragment() {
         }
     }
 
-//    override fun userProfileUpdated(userProfile: UserProfile) {
-//    }
+    public fun userProfileUpdated(userProfile: UserProfile) {
+        var query = FirebaseFirestore.getInstance().collection(("userProfiles")).whereEqualTo(
+            "uid", FirebaseAuth.getInstance().currentUser?.uid
+        )
+
+        var allRidesListener = query.addSnapshotListener(
+            object : EventListener<QuerySnapshot> {
+                override fun onEvent(querySnapshot: QuerySnapshot?, e: FirebaseFirestoreException?) {
+                    if (e != null) {
+                        Toast.makeText(context, "listen error: ${e.message}", Toast.LENGTH_LONG).show()
+                        return
+                    }
+
+                    for (dc in querySnapshot!!.documentChanges) {
+                        when (dc.getType()) {
+                            DocumentChange.Type.ADDED -> {
+                                val profile = dc.document.toObject(UserProfile::class.java)
+                                tvName.text = profile.name
+                                tvDescription.text = profile.description
+                                tvAge.text = profile.age.toString()
+                                tvGender.text = profile.gender
+                                if (profile!!.canDrive) {
+                                    ivCanDrive.setImageResource(R.drawable.candrive)
+                                } else {
+                                    ivCanDrive.setImageResource(R.drawable.cannotdrive)
+                                }
+
+                            }
+                            DocumentChange.Type.MODIFIED -> {
+                                tvName.text = userProfile.name
+                                tvDescription.text = userProfile.description
+                                tvAge.text = userProfile.age.toString()
+                                tvGender.text = userProfile.gender
+                                if (userProfile!!.canDrive) {
+                                    ivCanDrive.setImageResource(R.drawable.candrive)
+                                } else {
+                                    ivCanDrive.setImageResource(R.drawable.cannotdrive)
+                                }
+
+                            }
+                            DocumentChange.Type.REMOVED -> {
+                            }
+                        }
+                    }
+                }
+            })
+
+    }
 
     companion object {
         const val TAG = "UserInfoFragment"

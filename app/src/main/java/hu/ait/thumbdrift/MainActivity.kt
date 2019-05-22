@@ -19,6 +19,13 @@ import hu.ait.thumbdrift.fragments.UserInfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler, AddRideDialog.RideHandler {
+    override fun rideUpdated(ride: Ride) {
+        if (fragment is OfferRideFragment){
+            (fragment as OfferRideFragment).rideUpdated(ride)
+        }
+    }
+
+
     override fun rideCreated(ride: Ride) {
         if (fragment is OfferRideFragment){
             (fragment as OfferRideFragment).rideCreated(ride)
@@ -81,6 +88,12 @@ class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler, AddR
     override fun userProfileCreated(userProfile: UserProfile){
         if (fragment is UserInfoFragment){
             (fragment as UserInfoFragment).profileCreated(userProfile)
+        }
+    }
+
+    override fun userProfileUpdated(userProfile: UserProfile) {
+        if (fragment is UserInfoFragment){
+            (fragment as UserInfoFragment).userProfileUpdated(userProfile)
         }
     }
 
