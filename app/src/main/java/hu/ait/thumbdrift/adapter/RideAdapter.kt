@@ -40,12 +40,12 @@ class RideAdapter(private val context: Context, private val uID: String, private
 
         if(tag == "SEARCH") {
             view.btnDelete.visibility = View.GONE
-            view.btnEdit.visibility = View.GONE
+            //view.btnEdit.visibility = View.GONE
 
         }
         else {
             view.btnDriverDetails.visibility = View.GONE
-            view.btnEdit.visibility = View.VISIBLE
+            //view.btnEdit.visibility = View.VISIBLE
         }
         return ViewHolder(view)
     }
@@ -118,6 +118,6 @@ class RideAdapter(private val context: Context, private val uID: String, private
         val tvNumberOfSeats: TextView = itemView.tvNumberOfSeats
         val btnDriverDetails: Button = itemView.btnDriverDetails
         val btnDelete: Button = itemView.btnDelete
-        val btnEdit: Button = itemView.btnEdit
+        //val btnEdit: Button = itemView.btnEdit
       }
 }
