@@ -33,5 +33,5 @@
     <string name="descriptionLabel">Description:</string>
     <string name="genderLabel">Gender:</string>
     <string name="ageLabel">Age:</string>
-    <string name="btnedit_profile">Edit Profile</string>
+    <string name="btnedit_profile">Update Profile</string>
 </resources>

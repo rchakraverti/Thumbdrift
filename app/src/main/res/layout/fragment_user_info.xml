@@ -85,4 +85,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+            android:id="@+id/btnLogout"
+            android:text="Logout"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintEnd_toStartOf="@id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

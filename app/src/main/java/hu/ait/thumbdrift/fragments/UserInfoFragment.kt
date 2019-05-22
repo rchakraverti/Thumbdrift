@@ -127,11 +127,12 @@ class UserInfoFragment : Fragment() {
 //        )
 
         btnEdit.setOnClickListener {
-
-            //activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, UserInfoFragment())
-
             AddUserInfoDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
+        }
 
+        btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            (context as MainActivity).finish()
         }
     }
 }
