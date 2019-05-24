@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
@@ -57,6 +58,8 @@ class AddUserInfoDialog : DialogFragment() {
             R.layout.add_user_info_dialog, null)
 
 
+        Log.d("DEBUG", rootView.etName.text.toString())
+        Toast.makeText(context, rootView.etName.text.toString(), Toast.LENGTH_LONG).show()
 
         etName = rootView.etName
         etAge = rootView.etAge

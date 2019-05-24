@@ -134,6 +134,7 @@ class UserInfoFragment : Fragment() {
 
                             }
                             DocumentChange.Type.MODIFIED -> {
+
                             }
                             DocumentChange.Type.REMOVED -> {
                             }

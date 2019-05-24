@@ -7,32 +7,32 @@
 
     <EditText
             android:id="@+id/etName"
-            android:hint="Name"
+            android:hint="@string/etname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <EditText
             android:id="@+id/etDescription"
-            android:hint="Description"
+            android:hint="@string/etdescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <EditText
             android:id="@+id/etGender"
-            android:hint="Gender"
+            android:hint="@string/etgender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <EditText
             android:id="@+id/etAge"
-            android:hint="Age"
+            android:hint="@string/etage"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <CheckBox
             android:id="@+id/cbCanDrive"
-            android:text="Would be willing to drive"
+            android:text="@string/would_be_willing_to_drive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

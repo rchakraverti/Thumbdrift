@@ -17,20 +17,20 @@
             android:layout_height="wrap_content">
         <EditText
                 android:id="@+id/etFrom"
-                android:hint="From"
+                android:hint="@string/from"
                 android:layout_weight="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
                 android:id="@+id/etTo"
-                android:hint="To"
+                android:hint="@string/to"
                 android:layout_weight="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
                 android:id="@+id/etDate"
                 android:inputType="date"
-                android:hint="Date"
+                android:hint="@string/date"
                 android:layout_weight="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

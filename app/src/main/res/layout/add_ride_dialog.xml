@@ -6,23 +6,23 @@
         android:layout_height="match_parent">
     <EditText
             android:id="@+id/etOfferFrom"
-            android:hint="From"
+            android:hint="@string/from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     <EditText
             android:id="@+id/etOfferTo"
-            android:hint="To"
+            android:hint="@string/to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     <EditText
             android:id="@+id/etOfferDate"
-            android:hint="Date: dd/mm/yy"
+            android:hint="@string/date_dd_mm_yy"
             android:inputType="date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     <EditText
             android:id="@+id/etOfferSeats"
-            android:hint="Seats Available"
+            android:hint="@string/seats_available"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
