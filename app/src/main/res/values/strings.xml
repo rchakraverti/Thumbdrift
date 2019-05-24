@@ -34,4 +34,25 @@
     <string name="genderLabel">Gender:</string>
     <string name="ageLabel">Age:</string>
     <string name="btnedit_profile">Update Profile</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_login">Login</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="date_dd_mm_yy">Date: dd/mm/yy</string>
+    <string name="seats_available">Seats Available</string>
+    <string name="etname">Name</string>
+    <string name="etdescription">Description</string>
+    <string name="etgender">Gender</string>
+    <string name="etage">Age</string>
+    <string name="would_be_willing_to_drive">Would be willing to drive</string>
+    <string name="contact_driver">Contact driver</string>
+    <string name="offer_ride">Offer Ride</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="date">Date</string>
+    <string name="logout">Logout</string>
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
+    <string name="offer_a_ride">Offer a ride</string>
+    <string name="user_info">User Info</string>
 </resources>

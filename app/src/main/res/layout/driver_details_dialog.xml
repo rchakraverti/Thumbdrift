@@ -27,7 +27,7 @@
 
     <Button
             android:id="@+id/btnContactDriver"
-            android:text="Contact driver"
+            android:text="@string/contact_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
