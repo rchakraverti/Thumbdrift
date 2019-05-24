@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), AddUserInfoDialog.ProfileHandler, AddR
         }
     }
 
-
     override fun rideCreated(ride: Ride) {
         if (fragment is OfferRideFragment){
             (fragment as OfferRideFragment).rideCreated(ride)

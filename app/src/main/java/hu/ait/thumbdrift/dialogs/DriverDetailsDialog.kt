@@ -27,7 +27,6 @@ class DriverDetailsDialog : DialogFragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -47,7 +46,6 @@ class DriverDetailsDialog : DialogFragment() {
         tvDriverDescription = rootView.tvDriverDescription
         tvDriverAge = rootView.tvDriverAge
         tvDriverGender = rootView.tvDriverGender
-
 
         tvDriverName.text = userToShow.name
         tvDriverGender.text = userToShow.gender

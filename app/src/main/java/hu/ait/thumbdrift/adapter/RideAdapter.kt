@@ -14,12 +14,6 @@ import hu.ait.thumbdrift.MainActivity
 import hu.ait.thumbdrift.R
 import hu.ait.thumbdrift.data.Ride
 import hu.ait.thumbdrift.dialogs.DriverDetailsDialog
-import kotlinx.android.synthetic.main.ride_row.view.*
-import kotlinx.android.synthetic.main.ride_row.view.btnDriverDetails
-import kotlinx.android.synthetic.main.ride_row.view.tvDate
-import kotlinx.android.synthetic.main.ride_row.view.tvFrom
-import kotlinx.android.synthetic.main.ride_row.view.tvNumberOfSeats
-import kotlinx.android.synthetic.main.ride_row.view.tvTo
 import kotlinx.android.synthetic.main.ride_row_edit_delete.view.*
 import java.sql.Driver
 import java.util.Collections.list
@@ -40,12 +34,9 @@ class RideAdapter(private val context: Context, private val uID: String, private
 
         if(tag == "SEARCH") {
             view.btnDelete.visibility = View.GONE
-            //view.btnEdit.visibility = View.GONE
-
         }
         else {
             view.btnDriverDetails.visibility = View.GONE
-            //view.btnEdit.visibility = View.VISIBLE
         }
         return ViewHolder(view)
     }
@@ -60,22 +51,13 @@ class RideAdapter(private val context: Context, private val uID: String, private
         holder.tvTo.text = ride.to
         holder.tvDate.text = ride.date
         holder.tvNumberOfSeats.text = ride.seats.toString()
-        //var s = Integer.parseInt(holder.tvNumberOfSeats.text.toString())
-        //s = seats
         holder.btnDriverDetails.setOnClickListener {
-            //open author information based on their author id: driver details fragment
             Toast.makeText(context, "Driver contacted.", Toast.LENGTH_LONG).show()
             (context as MainActivity).showDriverDetails(ride.authorUID, holder.adapterPosition)
-            //DriverDetailsDialog().show(fragmentManager, "TAG_ITEM_DIALOG")
             }
         holder.btnDelete.setOnClickListener {
             removeRide(holder.adapterPosition)
         }
-    }
-
-    fun updateRide(ride: Ride, editIndex: Int) {
-        rideList.set(editIndex, ride)
-        notifyItemChanged(editIndex)
     }
 
     fun addRide(ride: Ride, key: String) {
@@ -109,8 +91,6 @@ class RideAdapter(private val context: Context, private val uID: String, private
         notifyDataSetChanged()
     }
 
-
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvFrom: TextView = itemView.tvFrom
         val tvTo: TextView = itemView.tvTo
@@ -118,6 +98,5 @@ class RideAdapter(private val context: Context, private val uID: String, private
         val tvNumberOfSeats: TextView = itemView.tvNumberOfSeats
         val btnDriverDetails: Button = itemView.btnDriverDetails
         val btnDelete: Button = itemView.btnDelete
-        //val btnEdit: Button = itemView.btnEdit
       }
 }

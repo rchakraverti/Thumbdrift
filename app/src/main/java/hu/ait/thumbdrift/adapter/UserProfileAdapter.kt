@@ -44,19 +44,6 @@ class UserProfileAdapter(
         holder.tvAge.text = age.toString()
         holder.tvGender.text = gender
 
-
-        /*if (uId == authorUID) {
-            holder.btnDeletePost.visibility = View.VISIBLE
-
-            holder.btnDeletePost.setOnClickListener {
-                removePost(holder.adapterPosition)
-            }
-        } else {
-            holder.btnDeletePost.visibility = View.GONE
-        }*/
-
-
-
         setAnimation(holder.itemView, position)
     }
 
@@ -65,16 +52,6 @@ class UserProfileAdapter(
         postKeys.add(key)
         notifyDataSetChanged()
     }
-
-//    private fun removePost(index: Int) {
-//        FirebaseFirestore.getInstance().collection("posts").document(
-//            postKeys[index]
-//        ).delete()
-//
-//        postsList.removeAt(index)
-//        postKeys.removeAt(index)
-//        notifyItemRemoved(index)
-//    }
 
     fun removePostByKey(key: String) {
         val index = postKeys.indexOf(key)
@@ -99,7 +76,5 @@ class UserProfileAdapter(
         val tvDescription: TextView = itemView.tvDescription
         val tvGender: TextView = itemView.tvGender
         val tvAge: TextView = itemView.tvAge
-        val ivCanDrive: ImageView = itemView.ivCanDrive
-
     }
 }

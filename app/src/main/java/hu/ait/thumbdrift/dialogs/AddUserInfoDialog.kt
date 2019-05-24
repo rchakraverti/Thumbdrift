@@ -56,8 +56,6 @@ class AddUserInfoDialog : DialogFragment() {
         val rootView = requireActivity().layoutInflater.inflate(
             R.layout.add_user_info_dialog, null)
 
-
-
         etName = rootView.etName
         etAge = rootView.etAge
         etGender = rootView.etGender
@@ -65,8 +63,6 @@ class AddUserInfoDialog : DialogFragment() {
         cbCanDrive = rootView.cbCanDrive
 
         builder.setView(rootView)
-
-
 
         val arguments = this.arguments
 
@@ -84,18 +80,14 @@ class AddUserInfoDialog : DialogFragment() {
             etGender.setText(user.gender)
             cbCanDrive.isChecked = user.canDrive
 
-
-
             builder.setTitle("Edit user info")
         }
-
         builder.setPositiveButton("ADD") {
                 dialog, witch -> // empty
         }
 
         return builder.create()
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -110,7 +102,6 @@ class AddUserInfoDialog : DialogFragment() {
                 } else {
                     handleItemCreate()
                 }
-
                 dialog.dismiss()
             } else {
                 etName.error = "This field can not be empty"
@@ -135,7 +126,6 @@ class AddUserInfoDialog : DialogFragment() {
             }
         )
 
-
         userHandler.userProfileCreated(
             UserProfile(
                 FirebaseAuth.getInstance().currentUser!!.uid,
@@ -146,11 +136,7 @@ class AddUserInfoDialog : DialogFragment() {
                 cbCanDrive.isChecked
             )
         )
-
-
         }
-
-
 
     private fun handleItemEdit() {
         val profileToEdit = arguments?.getSerializable(
@@ -163,8 +149,6 @@ class AddUserInfoDialog : DialogFragment() {
         profileToEdit.canDrive = cbCanDrive.isChecked
         profileToEdit.age = etAge.text.toString().toInt()
 
-
         userHandler.userProfileUpdated(profileToEdit)
     }
-
 }

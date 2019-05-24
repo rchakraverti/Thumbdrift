@@ -54,16 +54,12 @@ class AddRideDialog : DialogFragment() {
         val rootView = requireActivity().layoutInflater.inflate(
             R.layout.add_ride_dialog, null)
 
-
-
         etOfferFrom = rootView.etOfferFrom
         etOfferTo = rootView.etOfferTo
         etOfferDate = rootView.etOfferDate
         etOfferSeats = rootView.etOfferSeats
 
         builder.setView(rootView)
-
-
 
         val arguments = this.arguments
 
@@ -79,8 +75,6 @@ class AddRideDialog : DialogFragment() {
             etOfferTo.setText(ride.to)
             etOfferDate.setText(ride.date)
             etOfferSeats.setText(ride.seats)
-
-
 
             builder.setTitle("Edit user info")
         }
@@ -106,7 +100,6 @@ class AddRideDialog : DialogFragment() {
                 } else {
                     handleItemCreate()
                 }
-
                 dialog.dismiss()
             } else {
                 etOfferFrom.error = "This field can not be empty"
@@ -115,11 +108,6 @@ class AddRideDialog : DialogFragment() {
     }
 
     private fun handleItemCreate() {
-
-        var query = FirebaseFirestore.getInstance().collection(("userProfiles"))
-            .whereEqualTo("uid", FirebaseAuth.getInstance().currentUser!!.uid)
-
-
 
         rideHandler.rideCreated(
             Ride(null,
@@ -130,11 +118,7 @@ class AddRideDialog : DialogFragment() {
                 etOfferSeats.text.toString().toInt()
             )
         )
-
-
     }
-
-
 
     private fun handleItemEdit() {
         val rideToEdit = arguments?.getSerializable(
@@ -146,8 +130,6 @@ class AddRideDialog : DialogFragment() {
         rideToEdit.date = etOfferDate.text.toString()
         rideToEdit.seats = etOfferSeats.text.toString().toInt()
 
-
         rideHandler.rideUpdated(rideToEdit)
     }
-
 }
